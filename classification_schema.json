@@ -1,0 +1,48 @@
+{
+  "id": "stable-slug",
+  "name_en": "string",
+  "name_ka": "string",
+  "abbreviation": "string",
+  "category": "enum",
+  "purpose_en": "string",
+  "purpose_ka": "string",
+  "system_version": "string",
+  "inputs": [
+    {
+      "key": "string",
+      "label_en": "string",
+      "label_ka": "string",
+      "type": "number|select|boolean|multiselect",
+      "required": true,
+      "options": [],
+      "unit": null
+    }
+  ],
+  "calculation_logic": {
+    "type": "rule_table|formula|manual_reference",
+    "expression_or_rules": "version-controlled rules"
+  },
+  "outputs": [
+    {
+      "grade": "string",
+      "label_en": "string",
+      "label_ka": "string",
+      "interpretation_en": "string",
+      "interpretation_ka": "string"
+    }
+  ],
+  "limitations_en": "string",
+  "limitations_ka": "string",
+  "references": [
+    {
+      "citation": "string",
+      "doi_or_url": "string",
+      "source_type": "primary|guideline|secondary"
+    }
+  ],
+  "review": {
+    "status": "draft|verified|retired",
+    "reviewed_by_role": "string",
+    "reviewed_at": "YYYY-MM-DD"
+  }
+}
