@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuroClass</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b1220;color:#e8eef8;font-family:Arial,sans-serif}
+header{padding:25px 18px;background:#111d30;border-bottom:1px solid #26364d}
+h1{margin:0;color:#54c7e8;font-size:28px}
+header p{color:#9eafc4}
+main{padding:18px;max-width:900px;margin:auto}
+input,select{width:100%;padding:14px;margin:8px 0;background:#17263b;color:white;border:1px solid #354b67;border-radius:9px;font-size:16px}
+h2{color:#54c7e8;margin-top:25px}
+.item{padding:16px;margin:10px 0;background:#17263b;border:1px solid #2b405c;border-radius:10px}
+.item h3{margin:0 0 8px;color:#fff}
+.item p{color:#aabbd0;margin:0}
+footer{text-align:center;padding:30px;color:#8193aa}
+</style>
+</head>
+<body>
+<header>
+<h1>NeuroClass</h1>
+<p>Neurology & Neurosurgery Learning Platform</p>
+</header>
+<main>
+<h2>ნევროლოგიური კლასიფიკაციები</h2>
+<input id="search" placeholder="მოძებნე დაავადება ან კლასიფიკაცია...">
+<select id="category">
+<option value="all">ყველა კატეგორია</option>
+<option value="tumor">ტვინის სიმსივნეები</option>
+<option value="vascular">სისხლძარღვოვანი</option>
+<option value="spine">ხერხემალი</option>
+<option value="trauma">ტრავმა</option>
+</select>
+<div id="results"></div>
+</main>
+<footer>NeuroClass © 2026</footer>
+<script>
+const data=[
+{name:"WHO CNS Tumor Classification",cat:"tumor",desc:"ცენტრალური ნერვული სისტემის სიმსივნეების კლასიფიკაცია."},
+{name:"MCA Aneurysms",cat:"vascular",desc:"შუა ტვინის არტერიის ანევრიზმების ანატომიური კლასიფიკაცია."},
+{name:"Spetzler-Martin Grade",cat:"vascular",desc:"არტერიოვენური მალფორმაციების ქირურგიული რისკის შეფასება."},
+{name:"Hunt and Hess Scale",cat:"vascular",desc:"სუბარაქნოიდული სისხლჩაქცევის კლინიკური შეფასება."},
+{name:"Fisher Scale",cat:"vascular",desc:"სუბარაქნოიდული სისხლჩაქცევის CT კლასიფიკაცია."},
+{name:"Pfirrmann Classification",cat:"spine",desc:"მალთაშუა დისკის დეგენერაციის MRI კლასიფიკაცია."},
+{name:"Meyerding Classification",cat:"spine",desc:"სპონდილოლისთეზის ხარისხის შეფასება."},
+{name:"TLICS",cat:"spine",desc:"თორაკოლუმბალური ხერხემლის ტრავმის კლასიფიკაცია."},
+{name:"ASIA / ISNCSCI",cat:"trauma",desc:"ზურგის ტვინის დაზიანების ნევროლოგიური შეფასება."},
+{name:"Glasgow Coma Scale",cat:"trauma",desc:"ცნობიერების დონის შეფასება."}
+];
+function render(){
+const q=document.getElementById("search").value.toLowerCase();
+const c=document.getElementById("category").value;
+const filtered=data.filter(x=>(c==="all"||x.cat===c)&&(x.name.toLowerCase().includes(q)||x.desc.toLowerCase().includes(q)));
+document.getElementById("results").innerHTML=filtered.map(x=>`<div class="item"><h3>${x.name}</h3><p>${x.desc}</p></div>`).join("")||"<p>შედეგი ვერ მოიძებნა</p>";
+}
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("category").addEventListener("change",render);
+render();
+</script>
+</body>
+</html>
