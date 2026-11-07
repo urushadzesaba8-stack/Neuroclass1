@@ -1,0 +1,55 @@
+NeuroClass · კვლევის სიახლეების ჩართვა ტელეფონიდან
+=================================================
+
+არსებული პროექტი:
+https://github.com/urushadzesaba8-stack/Neuroclass1
+
+1. ამოარქივე ZIP Android-ის Files აპში. GitHub გახსენი Chrome-ით.
+   თუ მენიუ არ ჩანს, Chrome-ში ჩართე Desktop site.
+
+2. main ბრენჩის მთავარ საქაღალდეში გამოიყენე Add file → Upload files.
+   თუ შვიდი მოდული უკვე ატვირთე, აირჩიე მხოლოდ ეს ხუთი ფაილი:
+   index.html, neuroclass.css, news.html, news.js, news.json
+   დააჭირე Commit changes.
+   თუ თავიდან აყენებ, ატვირთე არქივის ზედა დონეზე არსებული
+   ყველა .html, .css, .js და .json ფაილი.
+   news.json შეიცავს საწყის პუბლიკაციებს. სიახლეების გვერდი
+   იხსნება მთავარი გვერდის ღილაკიდან.
+
+3. იმავე რეპოზიტორიაში Add file → Create new file გამოიყენე ორჯერ.
+   ველში Name your file ჩაწერე სრული ბილიკი (წერტილიდან დაწყებული).
+   შემდეგ ამოარქივებული Setup საქაღალდიდან გახსენი მითითებული TXT,
+   დააკოპირე მთელი ტექსტი, ჩასვი GitHub-ის რედაქტორში და დააჭირე Commit changes.
+
+   GitHub-ის სრული ბილიკი                  Setup-ის ფაილი
+   .github/scripts/refresh-news.py         refresh-news.py.txt
+   .github/workflows/neuroclass-news.yml   neuroclass-news.yml.txt
+
+   პირველ რიგში დაამატე Python ფაილი, შემდეგ workflow. Setup
+   საქაღალდე და ინსტრუქციის TXT ფაილები პირდაპირ არ ატვირთო.
+
+4. Settings → Pages → Build and deployment → Source → GitHub Actions.
+   არსებული საიტის მისამართი იგივეა:
+   https://urushadzesaba8-stack.github.io/Neuroclass1/
+
+5. ქართულ-ინგლისური AI შეჯამებებისთვის:
+   Settings → Secrets and variables → Actions → New repository secret.
+   Name ველში ჩაწერე OPENAI_API_KEY. Secret ველში შეიყვანე შენი
+   OpenAI API პროექტის გასაღები. გასაღები შეინახე მხოლოდ Secrets-ში.
+   API ანგარიშს საკუთარი ბილინგი აქვს. თუ Secret-ს გამოტოვებ,
+   PubMed-ის პუბლიკაციების სია მაინც განახლდება.
+
+6. რეპოზიტორიის Actions ჩანართზე აირჩიე NeuroClass News and Pages →
+   Run workflow → main → Run workflow. თუ Actions გამორთულია, ჩართე.
+   დაელოდე წარმატებულ გაშვებას და საიტზე გახსენი „კვლევის სიახლეები“.
+   AI-ის შესამოწმებლად მოძებნე ბარათზე წარწერა „AI-ის შეჯამება“.
+
+განახლება დაგეგმილია ყოველდღე თბილისის დროით 08:17-ზე. GitHub-ს
+ზოგჯერ დაგეგმილი გაშვება უგვიანდება. საჯარო რეპოზიტორიის ხანგრძლივი
+უმოქმედობისას შეიძლება ხელახლა დაგჭირდეს workflow-ის ჩართვა.
+
+PubMed-ში ინდექსირებული სტატიები მოიძებნება Europe PMC-ის API-ით.
+სიახლეების გვერდი აჩვენებს თემას, ჟურნალს, თარიღსა და პირველწყაროს.
+AI-ის შეჯამებები ეყრდნობა მხოლოდ სტატიების საჯარო აბსტრაქტებს.
+საიტზე არ ქვეყნდება API გასაღები და მოდელს არ გადაეცემა კალკულატორში
+შეყვანილი ინფორმაცია.

@@ -66,3 +66,15 @@ footer{margin-top:2rem;padding:1.6rem 0;border-top:1px solid var(--line);color:v
 .skip:focus{top:.5rem;z-index:1}
 @media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.module-grid{grid-template-columns:1fr}.side{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}}
 @media(max-width:575px){.wrap{width:calc(100% - 1.3rem)}.fields,.side,.grid{grid-template-columns:1fr}.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.controls label:first-child{grid-column:1/-1}.card{min-height:0}.hero{padding-top:2rem}}
+.news-entry{display:flex;align-items:center;justify-content:space-between;gap:1rem;text-decoration:none;background:#122b37;border-color:#396473}
+.news-entry strong,.news-entry div span{display:block}
+.news-entry div span{color:var(--muted);font-size:.92rem;margin-top:.15rem}
+.news-controls{display:grid;grid-template-columns:minmax(0,17rem) 1fr;gap:1rem;align-items:end;margin:1.25rem 0}
+.news-controls label{display:block;font-size:.93rem;font-weight:680}
+.news-controls select{margin-top:.3rem}
+.news-controls p{margin:0}
+.news-card{overflow-wrap:anywhere}
+.news-card h2{font-size:1.1rem;margin:.5rem 0}
+.news-card p{color:var(--muted);font-size:.95rem}
+.news-card .source-link{display:inline-block;margin-top:.2rem}
+@media(max-width:575px){.news-controls{grid-template-columns:1fr}}

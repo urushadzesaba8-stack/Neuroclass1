@@ -1,0 +1,59 @@
+name: NeuroClass News and Pages
+on:
+  push:
+    branches: [main]
+  schedule:
+    # 08:17 Tbilisi (UTC+4)
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: neuroclass-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+      pages: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/configure-pages@v5
+      - uses: actions/cache@v5
+        with:
+          path: .neuroclass-news-cache
+          key: neuroclass-news-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: neuroclass-news-v1-
+      - name: Build site and update research feed
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          mkdir _site
+          git archive HEAD | tar -x -C _site
+          rm -rf _site/.github
+          python3 .github/scripts/refresh-news.py --output _site/news.json --state .neuroclass-news-cache
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: pages
+        uses: actions/deploy-pages@v4

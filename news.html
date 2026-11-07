@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#081321">
+<title>Research news · NeuroClass</title>
+<link rel="stylesheet" href="neuroclass.css">
+<script defer src="neuroclass.js"></script>
+<script defer src="news.js"></script>
+</head>
+<body>
+<a class="skip" href="#main" data-ka="მთავარ შიგთავსზე" data-en="Skip to content">მთავარ შიგთავსზე</a>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">NC</span> NeuroClass</a>
+  <div class="lang" role="group" aria-label="ქართული / English">
+    <button type="button" data-language="ka" aria-label="ქართული" aria-pressed="true">ქარ</button>
+    <button type="button" data-language="en" aria-label="English" aria-pressed="false">EN</button>
+  </div>
+</div></header>
+<main id="main">
+<section class="hero"><div class="wrap">
+  <a href="index.html" data-ka="← ყველა მოდული" data-en="← All modules">← ყველა მოდული</a>
+  <h1 data-ka="კვლევის სიახლეები" data-en="Research news">კვლევის სიახლეები</h1>
+  <p class="lead" data-ka="ბოლო 45 დღის სამეცნიერო პუბლიკაციები ნევროლოგიასა და ნეიროქირურგიაში. თითოეული ბარათი გადაგიყვანს PubMed-ის ჩანაწერზე." data-en="Neurology and neurosurgery publications from the past 45 days. Each card links to its PubMed record.">ბოლო 45 დღის სამეცნიერო პუბლიკაციები ნევროლოგიასა და ნეიროქირურგიაში. თითოეული ბარათი გადაგიყვანს PubMed-ის ჩანაწერზე.</p>
+</div></section>
+<div class="wrap">
+  <p class="notice" data-ka="AI-ის შეჯამებები ეფუძნება სტატიის აბსტრაქტს და საგანმანათლებლო მიზანს ემსახურება. კლინიკური გამოყენების წინ გადაამოწმე პირველწყარო." data-en="AI briefs are based on article abstracts and are for education. Verify the original publication before clinical use.">AI-ის შეჯამებები ეფუძნება სტატიის აბსტრაქტს და საგანმანათლებლო მიზანს ემსახურება. კლინიკური გამოყენების წინ გადაამოწმე პირველწყარო.</p>
+  <div class="news-controls">
+    <label><span data-ka="თემა" data-en="Topic">თემა</span>
+      <select id="news-topic">
+        <option value="all" data-ka="ყველა თემა" data-en="All topics">ყველა თემა</option>
+        <option value="vascular" data-ka="ნეიროვასკულარული" data-en="Neurovascular">ნეიროვასკულარული</option>
+        <option value="spine" data-ka="ხერხემალი და ზურგის ტვინი" data-en="Spine and spinal cord">ხერხემალი და ზურგის ტვინი</option>
+        <option value="neurosurgery" data-ka="ნეიროქირურგია და ნეიროტრავმა" data-en="Neurosurgery and neurotrauma">ნეიროქირურგია და ნეიროტრავმა</option>
+      </select>
+    </label>
+    <p id="news-updated" class="muted"></p>
+  </div>
+  <p id="news-status" role="status" class="muted">იტვირთება…</p>
+  <div id="news-items" class="grid"></div>
+  <p><a href="https://pubmed.ncbi.nlm.nih.gov/" data-ka="ძებნა PubMed-ზე" data-en="Search PubMed">ძებნა PubMed-ზე</a> · <a href="https://europepmc.org/RestfulWebService">Europe PMC</a></p>
+  <noscript>სიახლეების სანახავად ჩართე JavaScript. / Enable JavaScript to view the feed.</noscript>
+</div>
+</main>
+<footer><div class="wrap">NeuroClass · <span data-ka="ნევროლოგია და ნეიროქირურგია" data-en="Neurology &amp; neurosurgery">ნევროლოგია და ნეიროქირურგია</span></div></footer>
+</body>
+</html>
