@@ -1,74 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ka">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#081321">
 <title>NeuroClass</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;background:#0b1220;color:#e8eef8;font-family:Arial,sans-serif}
-header{padding:25px 18px;background:#111d30;border-bottom:1px solid #26364d}
-h1{margin:0;color:#54c7e8;font-size:28px}
-header p{color:#9eafc4}
-main{padding:18px;max-width:900px;margin:auto}
-input,select{width:100%;padding:14px;margin:8px 0;background:#17263b;color:white;border:1px solid #354b67;border-radius:9px;font-size:16px}
-h2{color:#54c7e8;margin-top:25px}
-.item{padding:16px;margin:10px 0;background:#17263b;border:1px solid #2b405c;border-radius:10px}
-.item h3{margin:0 0 8px;color:#fff}
-.item p{color:#aabbd0;margin:0}
-footer{text-align:center;padding:30px;color:#8193aa}
-</style>
+<link rel="stylesheet" href="neuroclass.css">
+<script defer src="neuroclass.js"></script>
 </head>
 <body>
-<header>
-<h1>NeuroClass</h1>
-<p>Neurology & Neurosurgery Learning Platform</p>
-</header>
-<main>
-<h2>ნევროლოგიური კლასიფიკაციები</h2>
-<input id="search" placeholder="მოძებნე დაავადება ან კლასიფიკაცია...">
-<select id="category">
-<option value="all">ყველა კატეგორია</option>
-<option value="tumor">ტვინის სიმსივნეები</option>
-<option value="vascular">სისხლძარღვოვანი</option>
-<option value="spine">ხერხემალი</option>
-<option value="trauma">ტრავმა</option>
-</select>
-<div id="results"></div>
-</main>
-<footer>NeuroClass © 2026</footer>
-<script>
-const data=[
-{name:"WHO CNS Tumor Classification",cat:"tumor",desc:"ცენტრალური ნერვული სისტემის სიმსივნეების კლასიფიკაცია."},
-{name:"MCA Aneurysms",cat:"vascular",desc:"შუა ტვინის არტერიის ანევრიზმების ანატომიური კლასიფიკაცია."},
-{name:"Spetzler-Martin Grade",cat:"vascular",desc:"არტერიოვენური მალფორმაციების ქირურგიული რისკის შეფასება."},
-{name:"Hunt and Hess Scale",cat:"vascular",desc:"სუბარაქნოიდული სისხლჩაქცევის კლინიკური შეფასება."},
-{name:"Fisher Scale",cat:"vascular",desc:"სუბარაქნოიდული სისხლჩაქცევის CT კლასიფიკაცია."},
-{name:"Pfirrmann Classification",cat:"spine",desc:"მალთაშუა დისკის დეგენერაციის MRI კლასიფიკაცია."},
-{name:"Meyerding Classification",cat:"spine",desc:"სპონდილოლისთეზის ხარისხის შეფასება."},
-{name:"TLICS",cat:"spine",desc:"თორაკოლუმბალური ხერხემლის ტრავმის კლასიფიკაცია."},
-{name:"ASIA / ISNCSCI",cat:"trauma",desc:"ზურგის ტვინის დაზიანების ნევროლოგიური შეფასება."},
-{name:"Glasgow Coma Scale",cat:"trauma",desc:"ცნობიერების დონის შეფასება."}
-];
-function render(){
-const q=document.getElementById("search").value.toLowerCase();
-const c=document.getElementById("category").value;
-const filtered=data.filter(x=>(c==="all"||x.cat===c)&&(x.name.toLowerCase().includes(q)||x.desc.toLowerCase().includes(q)));
-document.getElementById("results").innerHTML=filtered.map(x=>`<div class="item"><h3>${x.name}</h3><p>${x.desc}</p></div>`).join("")||"<p>შედეგი ვერ მოიძებნა</p>";
-}
-document.getElementById("search").addEventListener("input",render);
-document.getElementById("category").addEventListener("change",render);
-render();
-</script>
-<div class="module-card">
-  <h2>Schizas Classification</h2>
-  <p>კლასიფიკაცია წელის ცენტრალური არხის სტენოზის შესაფასებლად MRI-ზე.</p>
-  <a href="schizas.html">Open module / მოდულის გახსნა</a>
-</div>
-  <div class="module-card">
-  <h2>SINS Classification</h2>
-  <p>ხერხემლის სიმსივნური დაზიანებით გამოწვეული არასტაბილურობის შეფასების კლასიფიკაცია (Spinal Instability Neoplastic Score).</p>
-  <a href="sins.html">Open module / მოდულის გახსნა</a>
+<a class="skip" href="#main"><span data-ka="მთავარ შიგთავსზე" data-en="Skip to content">მთავარ შიგთავსზე</span></a>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">NC</span> NeuroClass</a>
+  <div class="lang" role="group" aria-label="ქართული / English">
+    <button type="button" data-language="ka" aria-label="ქართული" aria-pressed="true">ქარ</button>
+    <button type="button" data-language="en" aria-label="English" aria-pressed="false">EN</button>
   </div>
+</div></header>
+<main id="main">
+<section class="hero"><div class="wrap">
+  <div class="kicker"><span data-ka="NEUROCLASS · სასწავლო პლატფორმა" data-en="NEUROCLASS · LEARNING PLATFORM">NEUROCLASS · სასწავლო პლატფორმა</span></div>
+  <h1 data-ka="ნევროლოგიური კლასიფიკაციები" data-en="Neurological classifications">ნევროლოგიური კლასიფიკაციები</h1>
+  <p data-ka="ნევროლოგიისა და ნეიროქირურგიის შკალები ერთ სივრცეში. გაეცანი კრიტერიუმებს, გამოთვალე ქულა და გაიარე მოკლე ქვიზი." data-en="Explore neurology and neurosurgery scales in one place. Review the criteria, calculate a result and take a quick quiz." class="lead">ნევროლოგიისა და ნეიროქირურგიის შკალები ერთ სივრცეში. გაეცანი კრიტერიუმებს, გამოთვალე ქულა და გაიარე მოკლე ქვიზი.</p>
+  <div class="pills">
+    <span data-ka="7 სასწავლო მოდული" data-en="7 learning modules" class="pill">7 სასწავლო მოდული</span>
+    <span data-ka="ქართული / English" data-en="English / ქართული" class="pill">ქართული / English</span>
+    <span data-ka="კალკულატორები და მაგალითები" data-en="Calculators &amp; examples" class="pill">კალკულატორები და მაგალითები</span>
+  </div>
+</div></section>
+<div class="wrap">
+  <p data-ka="საგანმანათლებლო გამოყენებისთვის. შედეგი გადაამოწმე პირველწყაროსა და კლინიკურ მონაცემებთან. დიაგნოსტიკის, ტრიაჟისა და მკურნალობის გადაწყვეტილება სრულ შეფასებას მოითხოვს." data-en="For education. Verify results against the primary source and clinical findings. Diagnosis, triage and treatment decisions require full clinical assessment." class="notice">საგანმანათლებლო გამოყენებისთვის. შედეგი გადაამოწმე პირველწყაროსა და კლინიკურ მონაცემებთან. დიაგნოსტიკის, ტრიაჟისა და მკურნალობის გადაწყვეტილება სრულ შეფასებას მოითხოვს.</p>
+  <section aria-labelledby="catalog-title">
+    <div class="catalog-head">
+      <h2 data-ka="მოდულების კატალოგი" data-en="Module catalog" id="catalog-title">მოდულების კატალოგი</h2>
+      <span id="count" class="count" aria-live="polite">7 მოდული</span>
+    </div>
+    <div class="controls">
+      <label><span data-ka="ძიება" data-en="Search">ძიება</span><input type="search" id="search" data-ka="მაგ. SINS, სტენოზი, GCS" data-en="e.g. SINS, stenosis, GCS" placeholder="მაგ. SINS, სტენოზი, GCS"></label>
+      <label><span data-ka="კატეგორია" data-en="Category">კატეგორია</span><select id="category"><option data-ka="ყველა კატეგორია" data-en="All categories" value="all">ყველა კატეგორია</option><option data-ka="ხერხემალი" data-en="Spine" value="spine">ხერხემალი</option><option data-ka="ნეიროვასკულარული" data-en="Neurovascular" value="vascular">ნეიროვასკულარული</option><option data-ka="ტრავმა და ცნობიერება" data-en="Trauma &amp; consciousness" value="trauma">ტრავმა და ცნობიერება</option></select></label>
+      <label><span data-ka="ტიპი" data-en="Type">ტიპი</span><select id="type"><option data-ka="ყველა ტიპი" data-en="All types" value="all">ყველა ტიპი</option><option data-ka="ქულები" data-en="Score" value="score">ქულები</option><option data-ka="გამოსახულების გრეიდი" data-en="Imaging grade" value="imaging">გამოსახულების გრეიდი</option></select></label>
+    </div>
+    <p data-ka="შედეგი ვერ მოიძებნა. შეცვალე საძიებო სიტყვა ან ფილტრი." data-en="No modules found. Try another search or change the filters." id="empty" class="empty" hidden>შედეგი ვერ მოიძებნა. შეცვალე საძიებო სიტყვა ან ფილტრი.</p>
+    <div class="grid">
+      <a class="card" href="sins.html" data-module data-category="spine" data-type="score" data-search="SINS · Spinal Instability Neoplastic Score SINS მეტასტაზი არასტაბილურობა სიმსივნე oncology metastasis tumour tumor ხერხემლის სიმსივნური დაზიანების მექანიკური სტაბილურობა. Mechanical stability of a neoplastic spinal lesion. ხერხემალი Spine ქულები Score">
+      <div class="eyebrow">01 · <span data-ka="ხერხემალი" data-en="Spine">ხერხემალი</span> · <span data-ka="ქულები" data-en="Score">ქულები</span></div>
+      <h3>SINS · Spinal Instability Neoplastic Score</h3>
+      <p data-ka="ხერხემლის სიმსივნური დაზიანების მექანიკური სტაბილურობა." data-en="Mechanical stability of a neoplastic spinal lesion.">ხერხემლის სიმსივნური დაზიანების მექანიკური სტაბილურობა.</p>
+      <span class="open"><span data-ka="მოდულის გახსნა" data-en="Open module">მოდულის გახსნა</span> <span aria-hidden="true">↗</span></span>
+    </a><a class="card" href="schizas.html" data-module data-category="spine" data-type="imaging" data-search="Schizas Classification Schizas ლუმბალური დურალური წელის სტენოზი lumbar stenosis T2 cauda equina MRI წელის ცენტრალური არხის სტენოზის მორფოლოგიური შეფასება MRI-ზე. Morphological grading of lumbar central canal stenosis on MRI. ხერხემალი Spine გამოსახულების გრეიდი Imaging grade">
+      <div class="eyebrow">02 · <span data-ka="ხერხემალი" data-en="Spine">ხერხემალი</span> · <span data-ka="გამოსახულების გრეიდი" data-en="Imaging grade">გამოსახულების გრეიდი</span></div>
+      <h3>Schizas Classification</h3>
+      <p data-ka="წელის ცენტრალური არხის სტენოზის მორფოლოგიური შეფასება MRI-ზე." data-en="Morphological grading of lumbar central canal stenosis on MRI.">წელის ცენტრალური არხის სტენოზის მორფოლოგიური შეფასება MRI-ზე.</p>
+      <span class="open"><span data-ka="მოდულის გახსნა" data-en="Open module">მოდულის გახსნა</span> <span aria-hidden="true">↗</span></span>
+    </a><a class="card" href="gcs.html" data-module data-category="trauma" data-type="score" data-search="Glasgow Coma Scale GCS კომა გლაზგო ცნობიერება თავის ტრავმა coma consciousness intubation TBI ცნობიერების შეფასება თვალის გახსნით, ვერბალური და მოტორული პასუხით. Level of consciousness from eye, verbal and motor responses. ტრავმა და ცნობიერება Trauma &amp; consciousness ქულები Score">
+      <div class="eyebrow">03 · <span data-ka="ტრავმა და ცნობიერება" data-en="Trauma &amp; consciousness">ტრავმა და ცნობიერება</span> · <span data-ka="ქულები" data-en="Score">ქულები</span></div>
+      <h3>Glasgow Coma Scale</h3>
+      <p data-ka="ცნობიერების შეფასება თვალის გახსნით, ვერბალური და მოტორული პასუხით." data-en="Level of consciousness from eye, verbal and motor responses.">ცნობიერების შეფასება თვალის გახსნით, ვერბალური და მოტორული პასუხით.</p>
+      <span class="open"><span data-ka="მოდულის გახსნა" data-en="Open module">მოდულის გახსნა</span> <span aria-hidden="true">↗</span></span>
+    </a><a class="card" href="modified-fisher.html" data-module data-category="vascular" data-type="imaging" data-search="Modified Fisher Scale mFisher სუბარაქნოიდული ანევრიზმა ფიშერი ვაზოსპაზმი aneurysm SAH IVH CT vasospasm ანევრიზმული სუბარაქნოიდული სისხლჩაქცევის CT გრეიდი. CT grading of aneurysmal subarachnoid hemorrhage. ნეიროვასკულარული Neurovascular გამოსახულების გრეიდი Imaging grade">
+      <div class="eyebrow">04 · <span data-ka="ნეიროვასკულარული" data-en="Neurovascular">ნეიროვასკულარული</span> · <span data-ka="გამოსახულების გრეიდი" data-en="Imaging grade">გამოსახულების გრეიდი</span></div>
+      <h3>Modified Fisher Scale</h3>
+      <p data-ka="ანევრიზმული სუბარაქნოიდული სისხლჩაქცევის CT გრეიდი." data-en="CT grading of aneurysmal subarachnoid hemorrhage.">ანევრიზმული სუბარაქნოიდული სისხლჩაქცევის CT გრეიდი.</p>
+      <span class="open"><span data-ka="მოდულის გახსნა" data-en="Open module">მოდულის გახსნა</span> <span aria-hidden="true">↗</span></span>
+    </a><a class="card" href="ich-score.html" data-module data-category="vascular" data-type="score" data-search="ICH Score ICH Score ჰემატომა ინტრაცერებრული სისხლჩაქცევა intracerebral hematoma volume mortality stroke სპონტანური ინტრაცერებრული სისხლჩაქცევის საწყისი სიმძიმე. Baseline severity of spontaneous intracerebral hemorrhage. ნეიროვასკულარული Neurovascular ქულები Score">
+      <div class="eyebrow">05 · <span data-ka="ნეიროვასკულარული" data-en="Neurovascular">ნეიროვასკულარული</span> · <span data-ka="ქულები" data-en="Score">ქულები</span></div>
+      <h3>ICH Score</h3>
+      <p data-ka="სპონტანური ინტრაცერებრული სისხლჩაქცევის საწყისი სიმძიმე." data-en="Baseline severity of spontaneous intracerebral hemorrhage.">სპონტანური ინტრაცერებრული სისხლჩაქცევის საწყისი სიმძიმე.</p>
+      <span class="open"><span data-ka="მოდულის გახსნა" data-en="Open module">მოდულის გახსნა</span> <span aria-hidden="true">↗</span></span>
+    </a><a class="card" href="spetzler-martin.html" data-module data-category="vascular" data-type="score" data-search="Spetzler–Martin Grade SM არტერიოვენური მალფორმაცია სპეტცლერი მარტინი AVM vascular malformation DSA თავის ტვინის AVM-ის მიკროქირურგიული რისკის ანატომიური გრეიდი. Anatomical grading of microsurgical risk for brain AVMs. ნეიროვასკულარული Neurovascular ქულები Score">
+      <div class="eyebrow">06 · <span data-ka="ნეიროვასკულარული" data-en="Neurovascular">ნეიროვასკულარული</span> · <span data-ka="ქულები" data-en="Score">ქულები</span></div>
+      <h3>Spetzler–Martin Grade</h3>
+      <p data-ka="თავის ტვინის AVM-ის მიკროქირურგიული რისკის ანატომიური გრეიდი." data-en="Anatomical grading of microsurgical risk for brain AVMs.">თავის ტვინის AVM-ის მიკროქირურგიული რისკის ანატომიური გრეიდი.</p>
+      <span class="open"><span data-ka="მოდულის გახსნა" data-en="Open module">მოდულის გახსნა</span> <span aria-hidden="true">↗</span></span>
+    </a><a class="card" href="pfirrmann.html" data-module data-category="spine" data-type="imaging" data-search="Pfirrmann Classification Pfirrmann დისკი დეგენერაცია ფირმანი დეჰიდრატაცია disc degeneration T2 MRI წელის მალთაშუა დისკის დეგენერაცია საგიტალურ T2 MRI-ზე. Lumbar intervertebral disc degeneration on sagittal T2 MRI. ხერხემალი Spine გამოსახულების გრეიდი Imaging grade">
+      <div class="eyebrow">07 · <span data-ka="ხერხემალი" data-en="Spine">ხერხემალი</span> · <span data-ka="გამოსახულების გრეიდი" data-en="Imaging grade">გამოსახულების გრეიდი</span></div>
+      <h3>Pfirrmann Classification</h3>
+      <p data-ka="წელის მალთაშუა დისკის დეგენერაცია საგიტალურ T2 MRI-ზე." data-en="Lumbar intervertebral disc degeneration on sagittal T2 MRI.">წელის მალთაშუა დისკის დეგენერაცია საგიტალურ T2 MRI-ზე.</p>
+      <span class="open"><span data-ka="მოდულის გახსნა" data-en="Open module">მოდულის გახსნა</span> <span aria-hidden="true">↗</span></span>
+    </a>
+    </div>
+  </section>
+  <details class="section">
+    <summary><span data-ka="საწყისი კატალოგის სხვა თემები" data-en="Other topics from the original catalog">საწყისი კატალოგის სხვა თემები</span></summary>
+    <p data-ka="თემები შემდგომი მოდულებისთვის" data-en="Topics for future modules">თემები შემდგომი მოდულებისთვის</p>
+    <ul><li>WHO CNS Tumor Classification</li><li>MCA Aneurysms</li><li>Hunt and Hess Scale</li><li>Original Fisher Scale</li>
+      <li>Meyerding Classification</li><li>TLICS</li><li>ASIA / ISNCSCI</li></ul>
+  </details>
+</div>
+</main>
+<footer><div class="wrap">NeuroClass · <span data-ka="ნევროლოგია და ნეიროქირურგია" data-en="Neurology &amp; neurosurgery">ნევროლოგია და ნეიროქირურგია</span></div></footer>
 </body>
 </html>

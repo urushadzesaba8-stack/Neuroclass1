@@ -1,173 +1,78 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ka">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NeuroClass | SINS Calculator</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;background:#0b1220;color:#e8eef8;font-family:Arial,sans-serif}
-header{padding:22px;background:#111d30;border-bottom:1px solid #354b67}
-h1{color:#54c7e8;margin:0;font-size:25px}
-header p{color:#aabbd0}
-main{max-width:760px;margin:auto;padding:16px}
-.section{background:#17263b;border:1px solid #354b67;border-radius:12px;padding:15px;margin:14px 0}
-label{display:block;font-weight:bold;margin:12px 0 7px}
-select{width:100%;padding:13px;background:#0b1220;color:white;border:1px solid #45617f;border-radius:8px;font-size:15px}
-small{display:block;color:#aabbd0;margin-top:6px;line-height:1.5}
-button{width:100%;padding:14px;border:0;border-radius:9px;background:#1685a9;color:white;font-size:16px;font-weight:bold;margin-top:12px}
-#result{display:none;text-align:center}
-#score{font-size:42px;font-weight:bold;margin:12px}
-#status{font-size:19px;font-weight:bold}
-.note{font-size:13px;color:#aabbd0;line-height:1.6}
-a{color:#54c7e8}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#081321">
+<title>SINS · Spinal Instability Neoplastic Score · NeuroClass</title>
+<link rel="stylesheet" href="neuroclass.css">
+<script defer src="neuroclass.js"></script>
 </head>
 <body>
-<header>
-<h1>NeuroClass</h1>
-<p>SINS — Spinal Instability Neoplastic Score</p>
-</header>
-<main>
-<div class="section">
-<h3>პაციენტის შეფასება</h3>
-<p class="note">აირჩიე თითოეული კრიტერიუმის შესაბამისი მნიშვნელობა. ჯამური ქულა გამოითვლება ავტომატურად.</p>
-
-<label>1. Location — დაზიანების მდებარეობა</label>
-<select id="location">
-<option value="">აირჩიე</option>
-<option value="3">Junctional (O-C2, C7-T2, T11-L1, L5-S1) — 3</option>
-<option value="2">Mobile (C3-C6, L2-L4) — 2</option>
-<option value="1">Semi-rigid (T3-T10) — 1</option>
-<option value="0">Rigid (S2-S5) — 0</option>
-</select>
-
-<label>2. Pain — ტკივილი</label>
-<select id="pain">
-<option value="">აირჩიე</option>
-<option value="3">Mechanical pain — 3</option>
-<option value="1">Occasional non-mechanical pain — 1</option>
-<option value="0">Pain-free — 0</option>
-</select>
-<small>მექანიკური ტკივილი: მოძრაობისას ან დატვირთვისას ძლიერდება და წოლისას მცირდება.</small>
-
-<label>3. Bone lesion — ძვლოვანი დაზიანება</label>
-<select id="bone">
-<option value="">აირჩიე</option>
-<option value="2">Lytic — 2</option>
-<option value="1">Mixed — 1</option>
-<option value="0">Blastic — 0</option>
-</select>
-
-<label>4. Alignment — ხერხემლის ღერძი</label>
-<select id="alignment">
-<option value="">აირჩიე</option>
-<option value="4">Subluxation / Translation — 4</option>
-<option value="2">De novo deformity — 2</option>
-<option value="0">Normal — 0</option>
-</select>
-
-<label>5. Vertebral body collapse — მალას სხეულის კოლაფსი</label>
-<select id="collapse">
-<option value="">აირჩიე</option>
-<option value="3">Collapse >50% — 3</option>
-<option value="2">Collapse <50% — 2</option>
-<option value="1">No collapse, but >50% body involved — 1</option>
-<option value="0">None of the above — 0</option>
-</select>
-
-<label>6. Posterolateral involvement</label>
-<select id="posterior">
-<option value="">აირჩიე</option>
-<option value="3">Bilateral — 3</option>
-<option value="1">Unilateral — 1</option>
-<option value="0">None — 0</option>
-</select>
-
-<button onclick="calculate()">გამოთვლა</button>
-<button onclick="resetForm()" style="background:#354b67">გასუფთავება</button>
+<a class="skip" href="#main"><span data-ka="მთავარ შიგთავსზე" data-en="Skip to content">მთავარ შიგთავსზე</span></a>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">NC</span> NeuroClass</a>
+  <div class="lang" role="group" aria-label="ქართული / English">
+    <button type="button" data-language="ka" aria-label="ქართული" aria-pressed="true">ქარ</button>
+    <button type="button" data-language="en" aria-label="English" aria-pressed="false">EN</button>
+  </div>
+</div></header>
+<main id="main">
+<section class="hero"><div class="wrap">
+  <a href="index.html"><span data-ka="← ყველა მოდული" data-en="← All modules">← ყველა მოდული</span></a>
+  <div class="pills"><span class="pill"><span data-ka="ხერხემალი" data-en="Spine">ხერხემალი</span></span>
+    <span class="pill"><span data-ka="ქულები" data-en="Score">ქულები</span></span><span class="pill">2010</span></div>
+  <h1>SINS · Spinal Instability Neoplastic Score</h1>
+  <p data-ka="ხერხემლის სიმსივნური დაზიანების მექანიკური სტაბილურობა." data-en="Mechanical stability of a neoplastic spinal lesion." class="lead">ხერხემლის სიმსივნური დაზიანების მექანიკური სტაბილურობა.</p>
+  <nav class="pills jump" aria-label="მოდული / Module"><a href="#assessment-section"><span data-ka="შეფასება" data-en="Assessment">შეფასება</span></a><a href="#criteria"><span data-ka="კრიტერიუმები" data-en="Criteria">კრიტერიუმები</span></a><a href="#quiz-section"><span data-ka="ქვიზი" data-en="Quiz">ქვიზი</span></a><a href="#sources"><span data-ka="წყაროები" data-en="Sources">წყაროები</span></a></nav>
+</div></section>
+<div class="wrap">
+  <p data-ka="საგანმანათლებლო გამოყენებისთვის. შედეგი გადაამოწმე პირველწყაროსა და კლინიკურ მონაცემებთან. დიაგნოსტიკის, ტრიაჟისა და მკურნალობის გადაწყვეტილება სრულ შეფასებას მოითხოვს." data-en="For education. Verify results against the primary source and clinical findings. Diagnosis, triage and treatment decisions require full clinical assessment." class="notice">საგანმანათლებლო გამოყენებისთვის. შედეგი გადაამოწმე პირველწყაროსა და კლინიკურ მონაცემებთან. დიაგნოსტიკის, ტრიაჟისა და მკურნალობის გადაწყვეტილება სრულ შეფასებას მოითხოვს.</p>
+  <div class="module-grid">
+    <div>
+      <section class="section" id="assessment-section">
+        <h2 data-ka="სტრუქტურირებული შეფასება" data-en="Structured assessment">სტრუქტურირებული შეფასება</h2>
+        <p data-ka="გამოიყენე სიმსივნით დაზიანებული თითოეული მალის ცალკე შესაფასებლად. მექანიკური ტკივილი შეაჯერე CT/MRI მიგნებებთან." data-en="Assess each affected vertebral level separately. Combine mechanical pain assessment with CT/MRI findings.">გამოიყენე სიმსივნით დაზიანებული თითოეული მალის ცალკე შესაფასებლად. მექანიკური ტკივილი შეაჯერე CT/MRI მიგნებებთან.</p>
+        <noscript><p data-ka="კალკულატორისა და ქვიზისთვის ჩართე JavaScript. კრიტერიუმები ქვემოთაა." data-en="Enable JavaScript for the calculator and quiz. Criteria are listed below.">კალკულატორისა და ქვიზისთვის ჩართე JavaScript. კრიტერიუმები ქვემოთაა.</p></noscript>
+        <form id="assessment" autocomplete="off">
+          <div class="fields"><label><span data-ka="ლოკალიზაცია" data-en="Location">ლოკალიზაცია</span><select name="field-0"><option data-ka="აირჩიე…" data-en="Select…" value="">აირჩიე…</option><option data-ka="გარდამავალი სეგმენტი (Junctional) · O–C2, C7–T2, T11–L1, L5–S1 · 3" data-en="Junctional · O–C2, C7–T2, T11–L1, L5–S1 · 3" value="3">გარდამავალი სეგმენტი (Junctional) · O–C2, C7–T2, T11–L1, L5–S1 · 3</option><option data-ka="მობილური სეგმენტი (Mobile) · C3–C6, L2–L4 · 2" data-en="Mobile · C3–C6, L2–L4 · 2" value="2">მობილური სეგმენტი (Mobile) · C3–C6, L2–L4 · 2</option><option data-ka="ნახევრად მყარი სეგმენტი (Semirigid) · T3–T10 · 1" data-en="Semirigid · T3–T10 · 1" value="1">ნახევრად მყარი სეგმენტი (Semirigid) · T3–T10 · 1</option><option data-ka="მყარი სეგმენტი (Rigid) · S2–S5 · 0" data-en="Rigid · S2–S5 · 0" value="0">მყარი სეგმენტი (Rigid) · S2–S5 · 0</option></select></label><label><span data-ka="ტკივილი" data-en="Pain">ტკივილი</span><select name="field-1" aria-describedby="hint-1"><option data-ka="აირჩიე…" data-en="Select…" value="">აირჩიე…</option><option data-ka="მექანიკური (Mechanical) · 3" data-en="Mechanical · 3" value="3">მექანიკური (Mechanical) · 3</option><option data-ka="პერიოდული არამექანიკური (Occasional nonmechanical) · 1" data-en="Occasional nonmechanical · 1" value="1">პერიოდული არამექანიკური (Occasional nonmechanical) · 1</option><option data-ka="უმტკივნეულო კერა (Painless lesion) · 0" data-en="Painless lesion · 0" value="0">უმტკივნეულო კერა (Painless lesion) · 0</option></select><small data-ka="მექანიკური ტკივილი ძლიერდება დატვირთვით, მოძრაობით ან ვერტიკალურ პოზიციაში და მსუბუქდება დაწოლისას." data-en="Mechanical pain worsens with movement, loading or upright posture and improves with recumbency." id="hint-1">მექანიკური ტკივილი ძლიერდება დატვირთვით, მოძრაობით ან ვერტიკალურ პოზიციაში და მსუბუქდება დაწოლისას.</small></label><label><span data-ka="ძვლოვანი კერის ტიპი" data-en="Bone lesion quality">ძვლოვანი კერის ტიპი</span><select name="field-2"><option data-ka="აირჩიე…" data-en="Select…" value="">აირჩიე…</option><option data-ka="ლიზური (Lytic) · 2" data-en="Lytic · 2" value="2">ლიზური (Lytic) · 2</option><option data-ka="შერეული (Mixed) · 1" data-en="Mixed lytic/blastic · 1" value="1">შერეული (Mixed) · 1</option><option data-ka="ბლასტური (Blastic) · 0" data-en="Blastic · 0" value="0">ბლასტური (Blastic) · 0</option></select></label><label><span data-ka="ხერხემლის ღერძი" data-en="Spinal alignment">ხერხემლის ღერძი</span><select name="field-3"><option data-ka="აირჩიე…" data-en="Select…" value="">აირჩიე…</option><option data-ka="სუბლუქსაცია ან ტრანსლაცია (Subluxation or translation) · 4" data-en="Subluxation or translation · 4" value="4">სუბლუქსაცია ან ტრანსლაცია (Subluxation or translation) · 4</option><option data-ka="ახალი კიფოზი ან სქოლიოზი (De novo deformity) · 2" data-en="New kyphosis or scoliosis · 2" value="2">ახალი კიფოზი ან სქოლიოზი (De novo deformity) · 2</option><option data-ka="ნორმალური ღერძი (Normal alignment) · 0" data-en="Normal alignment · 0" value="0">ნორმალური ღერძი (Normal alignment) · 0</option></select></label><label><span data-ka="მალის სხეულის კოლაფსი" data-en="Vertebral body collapse">მალის სხეულის კოლაფსი</span><select name="field-4"><option data-ka="აირჩიე…" data-en="Select…" value="">აირჩიე…</option><option data-ka="კოლაფსი &gt;50% (Collapse &gt;50%) · 3" data-en="Collapse &gt;50% · 3" value="3">კოლაფსი &gt;50% (Collapse &gt;50%) · 3</option><option data-ka="კოლაფსი &lt;50% (Collapse &lt;50%) · 2" data-en="Collapse &lt;50% · 2" value="2">კოლაფსი &lt;50% (Collapse &lt;50%) · 2</option><option data-ka="კოლაფსი არაა, სიმსივნე მოიცავს სხეულის &gt;50%-ს · 1" data-en="No collapse, &gt;50% body involvement · 1" value="1">კოლაფსი არაა, სიმსივნე მოიცავს სხეულის &gt;50%-ს · 1</option><option data-ka="კოლაფსი არაა, სიმსივნე მოიცავს სხეულის ≤50%-ს · 0" data-en="No collapse, ≤50% body involvement · 0" value="0">კოლაფსი არაა, სიმსივნე მოიცავს სხეულის ≤50%-ს · 0</option><option data-ka="კოლაფსი ზუსტად 50% ან გაურკვეველია" data-en="Exactly 50% collapse or uncertain" value="uncertain">კოლაფსი ზუსტად 50% ან გაურკვეველია</option></select></label><label><span data-ka="უკანა-ლატერალური ელემენტები" data-en="Posterolateral elements">უკანა-ლატერალური ელემენტები</span><select name="field-5" aria-describedby="hint-5"><option data-ka="აირჩიე…" data-en="Select…" value="">აირჩიე…</option><option data-ka="ორმხრივი ჩართულობა (Bilateral) · 3" data-en="Bilateral · 3" value="3">ორმხრივი ჩართულობა (Bilateral) · 3</option><option data-ka="ცალმხრივი ჩართულობა (Unilateral) · 1" data-en="Unilateral · 1" value="1">ცალმხრივი ჩართულობა (Unilateral) · 1</option><option data-ka="ჩართულობა არ არის (None) · 0" data-en="None · 0" value="0">ჩართულობა არ არის (None) · 0</option></select><small data-ka="შეაფასე პედიკულები, ფასეტები და კოსტოვერტებრული სახსრები." data-en="Assess pedicles, facets and costovertebral joints." id="hint-5">შეაფასე პედიკულები, ფასეტები და კოსტოვერტებრული სახსრები.</small></label></div>
+          <div class="actions">
+            <button type="button" class="primary" id="load-example"><span data-ka="მაგალითის ჩატვირთვა" data-en="Load example">მაგალითის ჩატვირთვა</span></button>
+            <button type="reset"><span data-ka="გასუფთავება" data-en="Reset">გასუფთავება</span></button>
+          </div>
+        </form>
+        <div class="result" id="result" role="status" aria-live="polite" tabindex="-1"></div>
+        <small data-ka="ველებში აირჩიე მხოლოდ კლინიკური კრიტერიუმები. შეფასების პასუხები ბრაუზერში მუშავდება და აპი მათ არ აგზავნის ან ინახავს." data-en="Select clinical criteria only. Assessment answers are processed in the browser and are neither sent nor stored by the app.">ველებში აირჩიე მხოლოდ კლინიკური კრიტერიუმები. შეფასების პასუხები ბრაუზერში მუშავდება და აპი მათ არ აგზავნის ან ინახავს.</small>
+      </section>
+      <section class="section reference" id="criteria">
+        <h2 data-ka="კრიტერიუმები და ინტერპრეტაცია" data-en="Criteria and interpretation">კრიტერიუმები და ინტერპრეტაცია</h2>
+        <dl><dt><span data-ka="ლოკალიზაცია" data-en="Location">ლოკალიზაცია</span></dt><dd><ul><li><span data-ka="გარდამავალი სეგმენტი (Junctional) · O–C2, C7–T2, T11–L1, L5–S1 · 3" data-en="Junctional · O–C2, C7–T2, T11–L1, L5–S1 · 3">გარდამავალი სეგმენტი (Junctional) · O–C2, C7–T2, T11–L1, L5–S1 · 3</span></li><li><span data-ka="მობილური სეგმენტი (Mobile) · C3–C6, L2–L4 · 2" data-en="Mobile · C3–C6, L2–L4 · 2">მობილური სეგმენტი (Mobile) · C3–C6, L2–L4 · 2</span></li><li><span data-ka="ნახევრად მყარი სეგმენტი (Semirigid) · T3–T10 · 1" data-en="Semirigid · T3–T10 · 1">ნახევრად მყარი სეგმენტი (Semirigid) · T3–T10 · 1</span></li><li><span data-ka="მყარი სეგმენტი (Rigid) · S2–S5 · 0" data-en="Rigid · S2–S5 · 0">მყარი სეგმენტი (Rigid) · S2–S5 · 0</span></li></ul></dd><dt><span data-ka="ტკივილი" data-en="Pain">ტკივილი</span></dt><dd><ul><li><span data-ka="მექანიკური (Mechanical) · 3" data-en="Mechanical · 3">მექანიკური (Mechanical) · 3</span></li><li><span data-ka="პერიოდული არამექანიკური (Occasional nonmechanical) · 1" data-en="Occasional nonmechanical · 1">პერიოდული არამექანიკური (Occasional nonmechanical) · 1</span></li><li><span data-ka="უმტკივნეულო კერა (Painless lesion) · 0" data-en="Painless lesion · 0">უმტკივნეულო კერა (Painless lesion) · 0</span></li></ul></dd><dt><span data-ka="ძვლოვანი კერის ტიპი" data-en="Bone lesion quality">ძვლოვანი კერის ტიპი</span></dt><dd><ul><li><span data-ka="ლიზური (Lytic) · 2" data-en="Lytic · 2">ლიზური (Lytic) · 2</span></li><li><span data-ka="შერეული (Mixed) · 1" data-en="Mixed lytic/blastic · 1">შერეული (Mixed) · 1</span></li><li><span data-ka="ბლასტური (Blastic) · 0" data-en="Blastic · 0">ბლასტური (Blastic) · 0</span></li></ul></dd><dt><span data-ka="ხერხემლის ღერძი" data-en="Spinal alignment">ხერხემლის ღერძი</span></dt><dd><ul><li><span data-ka="სუბლუქსაცია ან ტრანსლაცია (Subluxation or translation) · 4" data-en="Subluxation or translation · 4">სუბლუქსაცია ან ტრანსლაცია (Subluxation or translation) · 4</span></li><li><span data-ka="ახალი კიფოზი ან სქოლიოზი (De novo deformity) · 2" data-en="New kyphosis or scoliosis · 2">ახალი კიფოზი ან სქოლიოზი (De novo deformity) · 2</span></li><li><span data-ka="ნორმალური ღერძი (Normal alignment) · 0" data-en="Normal alignment · 0">ნორმალური ღერძი (Normal alignment) · 0</span></li></ul></dd><dt><span data-ka="მალის სხეულის კოლაფსი" data-en="Vertebral body collapse">მალის სხეულის კოლაფსი</span></dt><dd><ul><li><span data-ka="კოლაფსი &gt;50% (Collapse &gt;50%) · 3" data-en="Collapse &gt;50% · 3">კოლაფსი &gt;50% (Collapse &gt;50%) · 3</span></li><li><span data-ka="კოლაფსი &lt;50% (Collapse &lt;50%) · 2" data-en="Collapse &lt;50% · 2">კოლაფსი &lt;50% (Collapse &lt;50%) · 2</span></li><li><span data-ka="კოლაფსი არაა, სიმსივნე მოიცავს სხეულის &gt;50%-ს · 1" data-en="No collapse, &gt;50% body involvement · 1">კოლაფსი არაა, სიმსივნე მოიცავს სხეულის &gt;50%-ს · 1</span></li><li><span data-ka="კოლაფსი არაა, სიმსივნე მოიცავს სხეულის ≤50%-ს · 0" data-en="No collapse, ≤50% body involvement · 0">კოლაფსი არაა, სიმსივნე მოიცავს სხეულის ≤50%-ს · 0</span></li></ul></dd><dt><span data-ka="უკანა-ლატერალური ელემენტები" data-en="Posterolateral elements">უკანა-ლატერალური ელემენტები</span></dt><dd><ul><li><span data-ka="ორმხრივი ჩართულობა (Bilateral) · 3" data-en="Bilateral · 3">ორმხრივი ჩართულობა (Bilateral) · 3</span></li><li><span data-ka="ცალმხრივი ჩართულობა (Unilateral) · 1" data-en="Unilateral · 1">ცალმხრივი ჩართულობა (Unilateral) · 1</span></li><li><span data-ka="ჩართულობა არ არის (None) · 0" data-en="None · 0">ჩართულობა არ არის (None) · 0</span></li></ul></dd><dt><span data-ka="შედეგის კატეგორიები" data-en="Result categories">შედეგის კატეგორიები</span></dt><dd><ul><li>0–6 · <span data-ka="სტაბილური (Stable)" data-en="Stable">სტაბილური (Stable)</span></li><li>7–12 · <span data-ka="პოტენციურად არასტაბილური (Potentially unstable)" data-en="Potentially unstable">პოტენციურად არასტაბილური (Potentially unstable)</span></li><li>13–18 · <span data-ka="არასტაბილური (Unstable)" data-en="Unstable">არასტაბილური (Unstable)</span></li></ul></dd></dl>
+        <h3><span data-ka="შეზღუდვები და გავრცელებული შეცდომები" data-en="Limitations and common pitfalls">შეზღუდვები და გავრცელებული შეცდომები</span></h3>
+        <p data-ka="დონეებს შორის ქულები არ შეაჯამო. ცალკე შეაფასე ეპიდურული კომპრესია (epidural compression) და ნევროლოგიური დეფიციტი. SINS ≥7 მხარს უჭერს სპეციალისტის კონსულტაციას. ოპერაციის საკითხი სრულ კლინიკურ შეფასებას მოითხოვს." data-en="Do not add scores across levels. Assess epidural compression and neurological deficits separately. SINS ≥7 supports specialist referral. Operative decisions require full clinical assessment.">დონეებს შორის ქულები არ შეაჯამო. ცალკე შეაფასე ეპიდურული კომპრესია (epidural compression) და ნევროლოგიური დეფიციტი. SINS ≥7 მხარს უჭერს სპეციალისტის კონსულტაციას. ოპერაციის საკითხი სრულ კლინიკურ შეფასებას მოითხოვს.</p>
+      </section>
+    </div>
+    <div class="side">
+      <section class="section">
+        <h2 data-ka="კლინიკური მაგალითი" data-en="Worked example">კლინიკური მაგალითი</h2>
+        <p data-ka="T12 ლიზური კერა, დატვირთვით ტკივილი, ნორმალური ღერძი, 30% კოლაფსი და ცალმხრივი პედიკულის ჩართულობა. ჯამი 11/18." data-en="T12 lytic lesion, mechanical pain, normal alignment, 30% collapse and unilateral pedicle involvement. Total 11/18.">T12 ლიზური კერა, დატვირთვით ტკივილი, ნორმალური ღერძი, 30% კოლაფსი და ცალმხრივი პედიკულის ჩართულობა. ჯამი 11/18.</p>
+      </section>
+      <section class="section" id="quiz-section">
+        <h2 data-ka="მოკლე ქვიზი" data-en="Quick quiz">მოკლე ქვიზი</h2>
+        <form id="quiz">
+          <fieldset class="quiz-question"><legend>1. <span data-ka="რამდენ ქულას იღებს T12-ის ლოკალიზაცია?" data-en="How many location points does T12 receive?">რამდენ ქულას იღებს T12-ის ლოკალიზაცია?</span></legend><label><input type="radio" name="q0" value="0"><span data-ka="1" data-en="1">1</span></label><label><input type="radio" name="q0" value="1"><span data-ka="2" data-en="2">2</span></label><label><input type="radio" name="q0" value="2"><span data-ka="3" data-en="3">3</span></label><span id="feedback-0" class="feedback"></span></fieldset><fieldset class="quiz-question"><legend>2. <span data-ka="რას ნიშნავს SINS 11?" data-en="What does SINS 11 indicate?">რას ნიშნავს SINS 11?</span></legend><label><input type="radio" name="q1" value="0"><span data-ka="სტაბილური" data-en="Stable">სტაბილური</span></label><label><input type="radio" name="q1" value="1"><span data-ka="პოტენციურად არასტაბილური" data-en="Potentially unstable">პოტენციურად არასტაბილური</span></label><label><input type="radio" name="q1" value="2"><span data-ka="არასტაბილური" data-en="Unstable">არასტაბილური</span></label><span id="feedback-1" class="feedback"></span></fieldset>
+          <button type="submit"><span data-ka="პასუხების შემოწმება" data-en="Check answers">პასუხების შემოწმება</span></button>
+          <p class="feedback" id="quiz-score" role="status"></p>
+        </form>
+      </section>
+      <section class="section sources" id="sources">
+        <h2 data-ka="წყაროები" data-en="References">წყაროები</h2>
+        <ul><li><a href="https://pubmed.ncbi.nlm.nih.gov/20562730/" target="_blank" rel="noopener noreferrer">Fisher et al. · A novel classification system for spinal instability in neoplastic disease (2010)</a></li><li><a href="https://www.nice.org.uk/guidance/ng234/chapter/recommendations#tools-for-assessing-spinal-stability-and-prognosis" target="_blank" rel="noopener noreferrer">NICE NG234 · Spinal metastases and metastatic spinal cord compression (2023)</a></li></ul>
+      </section>
+    </div>
+  </div>
 </div>
-
-<div class="section" id="result">
-<h3>შეფასების შედეგი</h3>
-<div id="score"></div>
-<div id="status"></div>
-<p id="explanation"></p>
-<p class="note" id="referral"></p>
-</div>
-
-<div class="section">
-<h3>ქულების ინტერპრეტაცია</h3>
-<p>0–6: Stable</p>
-<p>7–12: Potentially unstable</p>
-<p>13–18: Unstable</p>
-<p class="note">SINS ≥7 მოითხოვს ხერხემლის ქირურგის კონსულტაციის განხილვას.</p>
-</div>
-
-<div class="section">
-<h3>კლინიკური გაფრთხილება</h3>
-<p class="note">ეს კალკულატორი არის სასწავლო და კლინიკური გადაწყვეტილების დამხმარე ინსტრუმენტი. შედეგი არ წარმოადგენს დამოუკიდებელ დიაგნოზს ან ოპერაციის ჩვენებას. აუცილებელია კლინიკური მონაცემების, MRI/CT გამოსახულებებისა და სპეციალისტის შეფასების გათვალისწინება.</p>
-</div>
-
-<div class="section">
-<h3>წყაროები</h3>
-<p class="note">
-1. Fisher et al. Spine, 2010.
-<a href="https://pubmed.ncbi.nlm.nih.gov/20562730/">PubMed</a><br><br>
-2. Fourney et al. Journal of Clinical Oncology, 2011.
-<a href="https://pubmed.ncbi.nlm.nih.gov/21709187/">PubMed</a><br><br>
-3. AO Spine — Classification Systems.
-<a href="https://aofoundation.org/spine/clinical-library-and-tools/aospine-classification-systems">AO Spine</a>
-</p>
-</div>
+<script type="application/json" id="model">{"mode": "sum", "short": "SINS", "display": {"0": "0/18", "1": "1/18", "2": "2/18", "3": "3/18", "4": "4/18", "5": "5/18", "6": "6/18", "7": "7/18", "8": "8/18", "9": "9/18", "10": "10/18", "11": "11/18", "12": "12/18", "13": "13/18", "14": "14/18", "15": "15/18", "16": "16/18", "17": "17/18", "18": "18/18"}, "outcomes": {"0": ["სტაბილური (Stable).", "Stable."], "1": ["სტაბილური (Stable).", "Stable."], "2": ["სტაბილური (Stable).", "Stable."], "3": ["სტაბილური (Stable).", "Stable."], "4": ["სტაბილური (Stable).", "Stable."], "5": ["სტაბილური (Stable).", "Stable."], "6": ["სტაბილური (Stable).", "Stable."], "7": ["პოტენციურად არასტაბილური (Potentially unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Potentially unstable. Spine specialist assessment is indicated."], "8": ["პოტენციურად არასტაბილური (Potentially unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Potentially unstable. Spine specialist assessment is indicated."], "9": ["პოტენციურად არასტაბილური (Potentially unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Potentially unstable. Spine specialist assessment is indicated."], "10": ["პოტენციურად არასტაბილური (Potentially unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Potentially unstable. Spine specialist assessment is indicated."], "11": ["პოტენციურად არასტაბილური (Potentially unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Potentially unstable. Spine specialist assessment is indicated."], "12": ["პოტენციურად არასტაბილური (Potentially unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Potentially unstable. Spine specialist assessment is indicated."], "13": ["არასტაბილური (Unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Unstable. Spine specialist assessment is indicated."], "14": ["არასტაბილური (Unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Unstable. Spine specialist assessment is indicated."], "15": ["არასტაბილური (Unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Unstable. Spine specialist assessment is indicated."], "16": ["არასტაბილური (Unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Unstable. Spine specialist assessment is indicated."], "17": ["არასტაბილური (Unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Unstable. Spine specialist assessment is indicated."], "18": ["არასტაბილური (Unstable). საჭიროა ხერხემლის სპეციალისტის შეფასება.", "Unstable. Spine specialist assessment is indicated."]}, "unknown": ["წყაროს ცხრილში კოლაფსის კატეგორიები \u003c50% და >50%-ია. ზუსტად 50%-ზე ან გაურკვევლობისას გადაამოწმე გაზომვა და ადგილობრივი პროტოკოლი.", "Published collapse categories use \u003c50% and >50%. Verify the measurement and local protocol if collapse is exactly 50% or uncertain."], "example": ["3", "3", "2", "0", "2", "1"], "quiz": [{"prompt": ["რამდენ ქულას იღებს T12-ის ლოკალიზაცია?", "How many location points does T12 receive?"], "options": [["1", "1"], ["2", "2"], ["3", "3"]], "correct": 2, "why": ["T12 გარდამავალ T11–L1 სეგმენტშია.", "T12 lies in the junctional T11–L1 segment."]}, {"prompt": ["რას ნიშნავს SINS 11?", "What does SINS 11 indicate?"], "options": [["სტაბილური", "Stable"], ["პოტენციურად არასტაბილური", "Potentially unstable"], ["არასტაბილური", "Unstable"]], "correct": 1, "why": ["11 შედის 7–12 დიაპაზონში.", "11 falls in the 7–12 range."]}]}</script>
 </main>
-
-<script>
-function calculate(){
-const ids=['location','pain','bone','alignment','collapse','posterior'];
-const values=ids.map(id=>document.getElementById(id).value);
-
-if(values.some(v=>v==='')){
-alert('გთხოვ, შეავსე ექვსივე კრიტერიუმი.');
-return;
-}
-
-const total=values.reduce((sum,v)=>sum+Number(v),0);
-let status, explanation, color, referral;
-
-if(total<=6){
-status='STABLE';
-explanation='მექანიკურად სტაბილური დაზიანება SINS-ის მიხედვით.';
-color='#38c98a';
-referral='ქულა თავისთავად არ გამორიცხავს სხვა ნევროლოგიურ ან ონკოლოგიურ პრობლემას.';
-}else if(total<=12){
-status='POTENTIALLY UNSTABLE';
-explanation='პოტენციურად არასტაბილური დაზიანება.';
-color='#f2b84b';
-referral='საჭიროა ხერხემლის ქირურგის კონსულტაცია.';
-}else{
-status='UNSTABLE';
-explanation='არასტაბილური დაზიანება SINS-ის მიხედვით.';
-color='#ff6969';
-referral='საჭიროა ხერხემლის ქირურგის შეფასება და მკურნალობის გეგმის განხილვა.';
-}
-
-document.getElementById('result').style.display='block';
-document.getElementById('score').textContent=total+' / 18';
-document.getElementById('score').style.color=color;
-document.getElementById('status').textContent=status;
-document.getElementById('status').style.color=color;
-document.getElementById('explanation').textContent=explanation;
-document.getElementById('referral').textContent=referral;
-document.getElementById('result').scrollIntoView({behavior:'smooth'});
-}
-
-function resetForm(){
-['location','pain','bone','alignment','collapse','posterior']
-.forEach(id=>document.getElementById(id).value='');
-document.getElementById('result').style.display='none';
-}
-</script>
+<footer><div class="wrap">NeuroClass · <span data-ka="ნევროლოგია და ნეიროქირურგია" data-en="Neurology &amp; neurosurgery">ნევროლოგია და ნეიროქირურგია</span></div></footer>
 </body>
 </html>
