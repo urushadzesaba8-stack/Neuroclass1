@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ka">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="NeuroClass — Schizas MRI classification of lumbar central canal stenosis">
+<title>NeuroClass | Schizas Classification</title>
+<style>
+:root{--bg:#0b1220;--panel:#121d30;--panel2:#18263d;--text:#edf3fb;--muted:#a9b8cc;--line:#2b3b55;--accent:#66c5d8;--good:#8bd6a5;--warn:#ffd27a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.62 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:28px 18px 22px;background:linear-gradient(135deg,#10243b,#123448);border-bottom:1px solid var(--line)}
+.wrap{max-width:980px;margin:auto;padding:0 16px}header .eyebrow{color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}
+h1{font-size:clamp(1.8rem,5vw,2.7rem);line-height:1.15;margin:9px 0}h2{font-size:1.35rem;margin:0 0 12px}h3{font-size:1.05rem;margin:0 0 7px}
+p{margin:8px 0}.sub{color:var(--muted);max-width:760px}
+main{padding:18px 0 50px}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}
+button,.pill{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:12px;padding:10px 13px;font:inherit;cursor:pointer}
+button.active{background:#1b5263;border-color:var(--accent)}button:focus{outline:2px solid var(--accent);outline-offset:2px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:17px;margin:13px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:11px}
+.grade{border-top:4px solid var(--accent)}.grade.severe{border-top-color:#e39a77}.grade.extreme{border-top-color:#e36f78}
+.grade .tag{font-size:1.35rem;font-weight:800;color:var(--accent)}.grade.severe .tag{color:#e39a77}.grade.extreme .tag{color:#e36f78}
+.small{font-size:.9rem;color:var(--muted)}.key{color:var(--good);font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:.94rem}th,td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}th{color:var(--accent)}
+.callout{border-left:4px solid var(--warn);padding:10px 13px;background:#29271f;border-radius:8px;margin:12px 0}
+ul{padding-left:22px}li{margin:5px 0}.hidden{display:none}
+.quiz-q{font-weight:700;margin-bottom:10px}.answer{margin-top:9px;color:var(--good);display:none}.answer.show{display:block}
+footer{border-top:1px solid var(--line);padding:20px 0;color:var(--muted);font-size:.88rem}
+a{color:var(--accent)}.lang-ka .en,.lang-en .ka{display:none}
+@media(max-width:560px){body{font-size:15px}.card{padding:14px}table{font-size:.85rem}th,td{padding:8px}}
+</style>
+</head>
+<body class="lang-ka">
+<header><div class="wrap">
+<div class="eyebrow">NeuroClass · Spine imaging</div>
+<h1>Schizas Classification</h1>
+<p class="sub ka">წელის ხერხემლის ცენტრალური არხის სტენოზის მორფოლოგიური შეფასება T2-წონიან აქსიალურ MRI-ზე.</p>
+<p class="sub en">Morphological grading of central lumbar spinal canal stenosis on axial T2-weighted MRI.</p>
+<div class="toolbar">
+<button id="kaBtn" class="active" type="button">ქართული</button><button id="enBtn" type="button">English</button>
+</div>
+</div></header>
+<main class="wrap">
+<section class="card">
+<h2 class="ka">1. რას აფასებს კლასიფიკაცია?</h2><h2 class="en">1. What does it assess?</h2>
+<p class="ka">Schizas-ის კლასიფიკაცია აფასებს დურალური ტომრის შიგნით ცხენის კუდის ნერვული ფესვების (cauda equina rootlets) და ცერებროსპინალური სითხის (CSF) განაწილებას. შეფასება კეთდება აქსიალურ T2 MRI ჭრილზე, ჩვეულებრივ დისკის დონეზე.</p>
+<p class="en">The Schizas system evaluates the relationship between cauda equina rootlets and cerebrospinal fluid (CSF) within the dural sac. It is assessed on axial T2-weighted MRI, usually at disc level.</p>
+<p class="ka"><b>ძირითადი პრინციპი:</b> რაც უფრო მეტად ქრება CSF-ის ნათელი სიგნალი და ინდივიდუალური ფესვების გარჩევადობა, მით უფრო მძიმეა ცენტრალური სტენოზის მორფოლოგიური ხარისხი.</p>
+<p class="en"><b>Core principle:</b> progressive loss of bright CSF signal and rootlet individuation indicates increasing morphological severity of central stenosis.</p>
+</section>
+
+<section>
+<h2 class="ka">2. ხარისხები — A1-დან D-მდე</h2><h2 class="en">2. Grades — A1 through D</h2>
+<div class="grid">
+<article class="card grade"><div class="tag">A1</div><h3 class="ka">მინიმალური / უმნიშვნელო სტენოზი</h3><h3 class="en">No or minor stenosis</h3>
+<p class="ka">ნერვული ფესვები დურალური ტომრის უკანა ნაწილშია და იკავებს მისი ფართობის ნახევარზე ნაკლებს. CSF მკაფიოდ ჩანს.</p><p class="en">Rootlets lie dorsally and occupy less than half of the dural sac. CSF remains clearly visible.</p></article>
+<article class="card grade"><div class="tag">A2</div><h3 class="ka">მინიმალური / უმნიშვნელო სტენოზი</h3><h3 class="en">No or minor stenosis</h3>
+<p class="ka">ფესვები უკანა მდებარეობით ეხება დურას და ქმნის ნალისებრ (horseshoe) კონფიგურაციას. CSF შენარჩუნებულია.</p><p class="en">Dorsally located rootlets contact the dura in a horseshoe configuration. CSF remains visible.</p></article>
+<article class="card grade"><div class="tag">A3</div><h3 class="ka">მინიმალური / უმნიშვნელო სტენოზი</h3><h3 class="en">No or minor stenosis</h3>
+<p class="ka">ფესვები უკანა ნაწილშია, მაგრამ იკავებს დურალური ტომრის ფართობის ნახევარზე მეტს.</p><p class="en">Rootlets lie dorsally but occupy more than half of the dural sac area.</p></article>
+<article class="card grade"><div class="tag">A4</div><h3 class="ka">მინიმალური / უმნიშვნელო სტენოზი</h3><h3 class="en">No or minor stenosis</h3>
+<p class="ka">ფესვები ცენტრალურადაა განლაგებული და იკავებს დურალური ტომრის ფართობის დიდ ნაწილს.</p><p class="en">Rootlets are centrally located and occupy most of the dural sac area.</p></article>
+<article class="card grade"><div class="tag">B</div><h3 class="ka">ზომიერი სტენოზი</h3><h3 class="en">Moderate stenosis</h3>
+<p class="ka">ფესვები ავსებს დურალურ ტომარას, თუმცა ცალკეული ფესვების გარჩევა ჯერ კიდევ შესაძლებელია; მათ შორის CSF-ის მცირე სივრცეები რჩება.</p><p class="en">Rootlets occupy the entire dural sac but remain individually distinguishable, with small CSF spaces between them.</p></article>
+<article class="card grade severe"><div class="tag">C</div><h3 class="ka">მძიმე სტენოზი</h3><h3 class="en">Severe stenosis</h3>
+<p class="ka">ცალკეული ნერვული ფესვები აღარ განირჩევა; დურალური ტომარა ერთგვაროვან ნაცრისფერ სიგნალს აჩვენებს და CSF აღარ ჩანს. უკანა ეპიდურული ცხიმი შენარჩუნებულია.</p><p class="en">Individual rootlets are no longer distinguishable. The dural sac has a homogeneous gray appearance with no visible CSF, but posterior epidural fat remains.</p></article>
+<article class="card grade extreme"><div class="tag">D</div><h3 class="ka">უკიდურესად მძიმე სტენოზი</h3><h3 class="en">Extreme stenosis</h3>
+<p class="ka">ფესვები აღარ განირჩევა, CSF-ის სიგნალი არ ჩანს და უკანა ეპიდურული ცხიმიც აღარ იდენტიფიცირდება.</p><p class="en">Rootlets are not distinguishable, CSF is not visible, and posterior epidural fat is no longer identifiable.</p></article>
+</div>
+</section>
+
+<section class="card">
+<h2 class="ka">3. სწრაფი შედარება</h2><h2 class="en">3. Quick comparison</h2>
+<table><thead><tr><th>Grade</th><th class="ka">ფესვების გარჩევადობა</th><th class="en">Rootlet visibility</th><th class="ka">CSF</th><th class="en">CSF</th><th class="ka">უკანა ეპიდურული ცხიმი</th><th class="en">Posterior epidural fat</th></tr></thead>
+<tbody>
+<tr><td>A1–A4</td><td class="ka">კარგად განირჩევა</td><td class="en">Distinct</td><td>Visible</td><td>Visible</td><td class="ka">არ არის განმსაზღვრელი</td><td class="en">Not defining</td></tr>
+<tr><td>B</td><td class="ka">განირჩევა, მაგრამ ტომარას ავსებს</td><td class="en">Distinct but fill the sac</td><td class="ka">ნაწილობრივ ჩანს</td><td class="en">Some remains</td><td class="ka">არ არის განმსაზღვრელი</td><td class="en">Not defining</td></tr>
+<tr><td>C</td><td class="ka">აღარ განირჩევა</td><td class="en">Not distinguishable</td><td class="ka">არ ჩანს</td><td class="en">Absent</td><td class="ka">შენარჩუნებულია</td><td class="en">Present</td></tr>
+<tr><td>D</td><td class="ka">აღარ განირჩევა</td><td class="en">Not distinguishable</td><td class="ka">არ ჩანს</td><td class="en">Absent</td><td class="ka">არ ჩანს</td><td class="en">Absent</td></tr>
+</tbody></table>
+</section>
+
+<section class="card">
+<h2 class="ka">4. MRI-ის შეფასების პრაქტიკული ალგორითმი</h2><h2 class="en">4. Practical MRI reading sequence</h2>
+<ol class="ka">
+<li>აირჩიე აქსიალური T2-წონიანი ჭრილი შესაბამის დონეზე (მაგ., L3–L4 ან L4–L5), სადაც სტენოზი ყველაზე გამოხატულია.</li>
+<li>შეაფასე, ჩანს თუ არა CSF-ის ნათელი სიგნალი დურალური ტომრის შიგნით.</li>
+<li>განსაზღვრე, შესაძლებელია თუ არა cauda equina-ს ცალკეული ფესვების გარჩევა.</li>
+<li>თუ ფესვები გარჩევადია, შეაფასე A1–A4 ან B-ის კრიტერიუმები.</li>
+<li>თუ ფესვები და CSF აღარ განირჩევა, შეამოწმე უკანა ეპიდურული ცხიმი: შენარჩუნებულია — C; არ ჩანს — D.</li>
+<li>ცალკე შეაფასე ლატერალური რეცესები და ნეიროფორამინები — Schizas მხოლოდ ცენტრალური არხის მორფოლოგიურ ხარისხს აღწერს.</li>
+</ol>
+<ol class="en">
+<li>Select the axial T2-weighted image at the relevant level (e.g., L3–L4 or L4–L5), preferably the most stenotic slice.</li>
+<li>Check whether bright CSF signal is visible within the dural sac.</li>
+<li>Determine whether individual cauda equina rootlets can be distinguished.</li>
+<li>If rootlets remain distinguishable, assess the A1–A4 or B criteria.</li>
+<li>If neither rootlets nor CSF are distinguishable, inspect posterior epidural fat: present = C; absent = D.</li>
+<li>Assess lateral recesses and neural foramina separately; Schizas grades central canal morphology only.</li>
+</ol>
+</section>
+
+<section class="card">
+<h2 class="ka">5. კლინიკური მნიშვნელობა და შეზღუდვები</h2><h2 class="en">5. Clinical relevance and limitations</h2>
+<ul class="ka">
+<li>მაღალი ხარისხი (C/D) მიუთითებს გამოხატულ მორფოლოგიურ ცენტრალურ სტენოზზე და შეიძლება დაეხმაროს ოპერაციამდელ რადიოლოგიურ აღწერას.</li>
+<li>კლასიფიკაცია არ არის დამოუკიდებელი ქირურგიული ჩვენება და არ განსაზღვრავს ავტომატურად დეკომპრესიის ან ფიქსაციის საჭიროებას.</li>
+<li>MRI-ის ხარისხი უნდა შეჯერდეს ჩივილებთან, ნევროლოგიურ სტატუსთან, სიარულის ტოლერანტობასთან და ფუნქციურ შეზღუდვებთან.</li>
+<li>შეაფასე დინამიკური/პოზიციური კომპონენტი, დეგენერაციული სპონდილოლისთეზი, სქოლიოზი, დისკის ჰერნიაცია, ფასეტური ჰიპერტროფია და ყვითელი იოგის გასქელება.</li>
+<li>რადიოლოგიური შევიწროების ხარისხსა და სიმპტომების სიმძიმეს შორის კავშირი ყოველთვის პირდაპირი არ არის.</li>
+</ul>
+<ul class="en">
+<li>Higher grades (C/D) indicate marked morphological central stenosis and can improve preoperative imaging description.</li>
+<li>The grade alone is not a surgical indication and does not automatically determine decompression or fusion.</li>
+<li>Correlate MRI with symptoms, neurological examination, walking tolerance, and functional limitation.</li>
+<li>Also assess dynamic/positional factors, degenerative spondylolisthesis, scoliosis, disc herniation, facet hypertrophy, and ligamentum flavum thickening.</li>
+<li>The degree of radiological narrowing does not always correlate directly with symptom severity.</li>
+</ul>
+<div class="callout"><b class="ka">საგულისხმო:</b><span class="ka"> cauda equina-ს სინდრომის კლინიკური ეჭვისას გადაუდებელი შეფასება და მართვა არ უნდა შეფერხდეს კლასიფიკაციის მინიჭების გამო.</span><b class="en">Important:</b><span class="en"> If cauda equina syndrome is suspected clinically, urgent assessment and management must not be delayed to assign an imaging grade.</span></div>
+</section>
+
+<section class="card">
+<h2 class="ka">6. სამედიცინო ჩანაწერის მაგალითი</h2><h2 class="en">6. Example reporting phrase</h2>
+<p class="ka">„L4–L5 დონეზე, აქსიალურ T2-წონიან MRI გამოსახულებებზე აღინიშნება დურალური ტომრის მნიშვნელოვანი კომპრესია, CSF-ის სიგნალისა და cauda equina-ს ცალკეული ფესვების დიფერენცირების დაკარგვით; უკანა ეპიდურული ცხიმი შენარჩუნებულია. სურათი შეესაბამება Schizas C ხარისხის ცენტრალურ სპინალურ სტენოზს.“</p>
+<p class="en">“At L4–L5, axial T2-weighted MRI demonstrates marked dural sac compression with loss of visible CSF signal and individual cauda equina rootlet definition; posterior epidural fat is preserved. Findings are consistent with Schizas grade C central canal stenosis.”</p>
+</section>
+
+<section class="card">
+<h2 class="ka">7. ცოდნის შემოწმება</h2><h2 class="en">7. Knowledge check</h2>
+<div class="quiz-q ka">1) რომელ ხარისხში ავსებს ფესვები მთელ დურალურ ტომარას, თუმცა ცალკე ჯერ კიდევ განირჩევა?</div><div class="quiz-q en">1) In which grade do rootlets fill the entire dural sac but remain individually distinguishable?</div>
+<button type="button" onclick="showAnswer('a1')">A</button><button type="button" onclick="showAnswer('b1')">B</button><button type="button" onclick="showAnswer('c1')">C</button><div id="a1" class="answer">A — არა. Grade A subtypes retain a more clearly visible CSF distribution.</div><div id="b1" class="answer">სწორია — Grade B.</div><div id="c1" class="answer">C — არა. Grade C-ში ფესვები აღარ განირჩევა.</div>
+<hr style="border:0;border-top:1px solid var(--line);margin:17px 0">
+<div class="quiz-q ka">2) რა განასხვავებს C ხარისხს D ხარისხისგან?</div><div class="quiz-q en">2) What distinguishes grade C from grade D?</div>
+<button type="button" onclick="showAnswer('a2')">CSF</button><button type="button" onclick="showAnswer('b2')">უკანა ეპიდურული ცხიმი / Posterior epidural fat</button><div id="a2" class="answer">სწორია — C-ში უკანა ეპიდურული ცხიმი შენარჩუნებულია, D-ში არ ჩანს.</div><div id="b2" class="answer">სწორია — C-ში უკანა ეპიდურული ცხიმი შენარჩუნებულია, D-ში არ ჩანს.</div>
+</section>
+
+<section class="card">
+<h2 class="ka">8. ძირითადი წყაროები</h2><h2 class="en">8. Key references</h2>
+<ol>
+<li>Schizas C, Theumann N, Burn A, et al. Qualitative grading of severity of lumbar spinal stenosis based on the morphology of the dural sac on magnetic resonance images. <i>Spine</i>. 2010;35(21):1919–1924. DOI: 10.1097/BRS.0b013e3181d359bd. <a href="https://pubmed.ncbi.nlm.nih.gov/20671589/" target="_blank" rel="noopener">PubMed</a> · <a href="https://profschizas.com/resources/qualitative_grading.pdf" target="_blank" rel="noopener">Original article PDF</a></li>
+<li>Clinical validity of two different grading systems for lumbar central canal stenosis: Schizas and Lee classification systems. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7252624/" target="_blank" rel="noopener">Full text (PMC)</a></li>
+<li>WFNS Spine Committee. Natural Course and Diagnosis of Lumbar Spinal Stenosis: Recommendations. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7322797/" target="_blank" rel="noopener">Full text (PMC)</a> · <a href="https://www.wfns-spine.org/lumbar-spinal-stenosis-recommendations" target="_blank" rel="noopener">WFNS recommendations</a></li>
+</ol>
+<p class="small ka">სასწავლო მასალაა. საბოლოო კლინიკური გადაწყვეტილება მიიღება სრული კლინიკური და რადიოლოგიური შეფასების საფუძველზე.</p>
+<p class="small en">Educational material. Clinical decisions require full clinical and radiological assessment.</p>
+</section>
+</main>
+<footer><div class="wrap">NeuroClass · Personal bilingual learning platform · Schizas Classification</div></footer>
+<script>
+const body=document.body,ka=document.getElementById('kaBtn'),en=document.getElementById('enBtn');
+ka.addEventListener('click',()=>{body.className='lang-ka';ka.classList.add('active');en.classList.remove('active')});
+en.addEventListener('click',()=>{body.className='lang-en';en.classList.add('active');ka.classList.remove('active')});
+function showAnswer(id){document.querySelectorAll('.answer').forEach(x=>x.classList.remove('show'));document.getElementById(id).classList.add('show')}
+</script>
+</body></html>
